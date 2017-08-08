@@ -23,7 +23,7 @@ public class SegmentedProgressBar extends View {
     private Path path, fillingPath;
     private int count;
     private int noOfPhoto=0;
-    private updatePhotoListener IUpdatePhotoListener;
+    private static updatePhotoListener IUpdatePhotoListener;
 
     Runnable animator = new Runnable() {
         @Override
@@ -73,7 +73,7 @@ public class SegmentedProgressBar extends View {
             array.recycle();
         }
 
-        IUpdatePhotoListener=new MainActivity();
+
 
         post(animator);
 
@@ -109,6 +109,10 @@ public class SegmentedProgressBar extends View {
 
     public interface updatePhotoListener {
         void changePhoto(int  number);
+    }
+
+    public static void registerUpdateListener(updatePhotoListener IUpdatePhotoListener){
+        SegmentedProgressBar.IUpdatePhotoListener=IUpdatePhotoListener;
     }
 
 }
